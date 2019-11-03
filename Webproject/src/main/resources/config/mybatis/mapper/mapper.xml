@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper">
+	<select id="member_checklogin" resultType="java.lang.String" parameterType="member.memberdto.MemberDTO">
+		select name from member where id = #{id} and password = #{password};
+	</select>
+	
+	<select id="member_findpass" resultType="java.lang.String" parameterType="member.memberdto.MemberDTO">
+		select password from member where name = #{name} and id = #{id} and tel1 = #{tel1} and tel2 = #{tel2} and tel3 = #{tel3};
+	</select>
+	
+	<select id="member_findid" resultType="java.lang.String" parameterType="member.memberdto.MemberDTO">
+		select id from member where name = #{name} and tel1 = #{tel1} and tel2 = #{tel2} and tel3 = #{tel3};
+	</select>
+	
+	<insert id="join_insert" parameterType="member.memberdto.MemberDTO">
+		insert into member (id, password, name, email, tel1, tel2, tel3, code) values (#{id}, #{password}, #{name}, #{email}, #{tel1}, #{tel2}, #{tel3}, #{code});
+	</insert>
+	
+	<select id="get_values" resultType="member.memberdto.MemberDTO" parameterType="java.lang.String">
+		select * from member where id = #{id};
+	</select>
+	
+	<update id="update_member" parameterType="member.memberdto.MemberDTO">
+		update member set email = #{email}, tel1=#{tel1}, tel2=#{tel2}, tel3=#{tel3} where no=#{no};
+	</update>
+	
+	<delete id="delete_member" parameterType="java.lang.Integer">
+		delete from member where no=#{no};
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
